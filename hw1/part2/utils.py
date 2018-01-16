@@ -58,10 +58,10 @@ def learning_curve(X,y,Xval,yval,reg):
     # TODO: compute error_train and error_val                                 #
     # 7 lines of code expected                                                #
     ###########################################################################
-    for i in range(1, num_examples):
+    for i in range(num_examples):
         reglinear_reg = RegularizedLinearReg_SquaredLoss()
-        theta = reglinear_reg.train(X[:i], y[:i], reg)
-        error_train[i] = reglinear_reg.loss(theta, X[:i], y[:i], 0.0)
+        theta = reglinear_reg.train(X[:i + 1], y[:i + 1], reg)
+        error_train[i] = reglinear_reg.loss(theta, X[:i + 1], y[:i + 1], 0.0)
         error_val[i] = reglinear_reg.loss(theta, Xval, yval, 0.0)
     ###########################################################################
 
@@ -131,10 +131,10 @@ def averaged_learning_curve(X,y,Xval,yval,reg):
     # 10-12 lines of code expected                                            #
     ###########################################################################
     repeated_times = 50
-    for i in range(1, num_examples):
+    for i in range(num_examples):
         for j in range(repeated_times):
-            train_idx = random.sample(range(0, num_examples), i)
-            val_idx = random.sample(range(0, num_examples), i)
+            train_idx = random.sample(range(0, num_examples), i + 1)
+            val_idx = random.sample(range(0, num_examples), i + 1)
             reglinear_reg = RegularizedLinearReg_SquaredLoss()
             theta = reglinear_reg.train(X[train_idx], y[train_idx], reg)
             error_train[i] += reglinear_reg.loss(theta, X[train_idx], y[train_idx], 0.0)
