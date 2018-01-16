@@ -81,14 +81,14 @@ class RegularizedLinearRegressor_Multi:
         - y_pred: Predicted output for the data in X. y_pred is a 1-dimensional
         array of length N, and each element is a real number.
         """
-        y_pred = np.zeros(X.shape[0])
+        
 
         ###########################################################################
         # TODO:                                                                   #
         # Implement this method. Store the predicted outputs in y_pred.           #
         #  1 line of code expected                                                #
         ###########################################################################
-
+        y_pred = np.zeros(X.shape[0])
 
         ###########################################################################
         #                           END OF YOUR CODE                              #
@@ -133,7 +133,7 @@ class RegularizedLinearReg_SquaredLoss(RegularizedLinearRegressor_Multi):
         #  2 lines of code expected                                               #
         ###########################################################################
         v = X.dot(theta) - y
-        J = (v.dot(v) + reg * theta[1:].dot(theta[1:])) / len(y) * 0.5
+        J = (v.T.dot(v) + reg * theta[1:].T.dot(theta[1:])) / len(y) * 0.5
         ###########################################################################
         #                           END OF YOUR CODE                              #
         ###########################################################################
