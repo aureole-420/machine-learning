@@ -22,10 +22,7 @@ def feature_normalize(X):
     # X_norm = np.zeros(X.shape)
     mu = X.mean(0)
     sigma = X.std(0)
-    # X_norm = ((X.transpose() - mu) / sigma).transpose()
     X_norm = (X - mu)/sigma
-    mu = mu.transpose()
-    sigma = sigma.transpose()
     ########################################################################
     return X_norm, mu, sigma
 

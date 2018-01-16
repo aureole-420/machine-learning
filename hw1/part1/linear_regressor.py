@@ -43,7 +43,7 @@ class LinearRegressor:
             #    One line of code expected                                          #
             #########################################################################
 
-            self.theta -= learning_rate/len(y) * X.transpose().dot(X.dot(self.theta) - y) 
+            self.theta -= learning_rate * grad
 
             #########################################################################
             #                       END OF YOUR CODE                                #
@@ -117,10 +117,9 @@ class LinearReg_SquaredLoss(LinearRegressor):
         ###########################################################################
 
         v = X.dot(self.theta) - y
-        #v = self.theta.dot(X) - y
-
         J = 0.5 * v.dot(v) / len(y)
-
+        grad = X.transpose().dot(v) / len(y) 
+        
         ###########################################################################
         #                           END OF YOUR CODE                              #
         ###########################################################################

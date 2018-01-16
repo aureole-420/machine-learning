@@ -41,7 +41,7 @@ class LinearRegressor_Multi:
             # Update the parameters using the gradient and the learning rate.       #
             #   One line of code expected
             #########################################################################
-            self.theta -= learning_rate/len(y) * X.transpose().dot(X.dot(self.theta) - y) 
+            self.theta -= learning_rate * grad
 
             #########################################################################
             #                       END OF YOUR CODE                                #
@@ -133,7 +133,7 @@ class LinearReg_SquaredLoss(LinearRegressor_Multi):
         ###########################################################################
         v = X.dot(self.theta) - y
         J = v.dot(v) * 0.5 / len(y)
-
+        grad = X.transpose().dot(v) / len(y)
         ###########################################################################
         #                           END OF YOUR CODE                              #
         ###########################################################################
