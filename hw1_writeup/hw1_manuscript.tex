@@ -46,7 +46,10 @@
 \centering
 \includegraphics[width=0.8\textwidth]{samplefigs/fig4.png}
 \end{subfigure}
+\caption{Visualization of four distributions}
 \end{figure}
+
+The probability that a sample from this distribution lies within the unit circle centered at $(0.1, 0.2)$ is $p = $.
 
 
 \subsection{Prove two independent Poisson random variables are also Poisson variable.}
@@ -449,6 +452,24 @@ Var(\sum_{k}Z_{k}) & = & \sum Var(Z_{k}),\ Z_{k}\ is\ independent\ from\ each\ o
 
 Substituting $Var(y^{(i)})=\sigma^{2}\ i=1,2,...,m$, we have $Var(\theta)=\boldsymbol{A}\sigma^{2}=\left(\boldsymbol{X}^{T}\boldsymbol{X}\right)^{-1}\boldsymbol{X}^{T}\sigma^{2}$.
 Q.E.D.
+
+
+\part*{3. Implementing linear regression and regularized linear regression}
+
+\subsection*{Problem 3.1.A3: Predicting on unseen data}
+
+For average home in Boston suburbs, we predict a median home value of 225328.063241
+
+\subsection*{Problem 3.1.B5: Exploring convergence of gradient descent}
+
+Plots 4 figures here.
+
+$\alpha = 0.1, 0.3$ and $N_{iteration} = 80$ are good trade off between accuracy and efficiency. One can easily find that small $\alpha$ (i.e. $\alpha= 0.01, 0.03$) leads to very slow convergence rate. $\alpha =0.1,0.3$ on the other hands, converges swiftly.
+
+\subsection*{Problem 3.2.A4: Adjusting the regularization parameter}
+draw two figures of polynomial fit and learning curves.
+
+If $\lambda$ is too small, the effect of penalty term can be neglected so that the regulation will not be implemented effectively -- the training model is still troubled by high-variation/over-fitting issue (as can be seen in Fig....). When $\lambda$ is too large, the loss function is in fact dominated by the penalty term, which is a slightly similar to the biased issue that we have too strong assumptions on the model. Therefore, the training model turns to be under-fit.  Only when $\lambda$ takes appropriate value that the regulation can works effectively.
 
 
 
