@@ -3,6 +3,7 @@
 \usepackage[latin9]{inputenc}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{subcaption} % to plot subfigure
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
@@ -456,20 +457,120 @@ Q.E.D.
 
 \part*{3. Implementing linear regression and regularized linear regression}
 
-\subsection*{Problem 3.1.A3: Predicting on unseen data}
+\subsection*{3.1.A1}
+No plot for this question.
 
+\subsection*{3.1.A2}
+Figure~\ref{fig:linear_fit} plots the linear fit using parameter obtained through training.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../hw1/part1/fig1.png}
+\caption{Fitting a linear model to the data}
+\label{fig:linear_fit}
+\end{figure}
+
+\subsection*{Problem 3.1.A3: Predicting on unseen data}
+For average home in Boston suburbs, we predict a median home value of 225328.063241 (USD)
+
+\subsection*{3.1.B1: Feature Normalization}
+No plot for this question.
+
+\subsection*{3.1.B2: Loss function and gradient descent}
+There should be a figure for this question.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../hw1/part1/fig1.png}
+\caption{Fitting a linear model to the data}
+\label{fig:linear_fit}
+\end{figure}
+
+\subsection*{3.1.B3 Making predictions on unseen data\label{subsec:3_1_B3}}
 For average home in Boston suburbs, we predict a median home value of 225328.063241
+
+\subsection*{3.1.B4: Normal equations}
+For average home in Boston suburbs, we predict a median home value of 225328.063241, which is the same as we obtained in subsec.~3.1.B3.
+
 
 \subsection*{Problem 3.1.B5: Exploring convergence of gradient descent}
 
-Plots 4 figures here.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=.8\linewidth]{../hw1/part1/3_1_B5_lr0_01.png}
+\subcaption{learning rate $\alpha=0.01$}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{../hw1/part1/3_1_B5_lr0_03}
+\subcaption{learning rate $\alpha=0.03$}
+\end{subfigure}
 
-$\alpha = 0.1, 0.3$ and $N_{iteration} = 80$ are good trade off between accuracy and efficiency. One can easily find that small $\alpha$ (i.e. $\alpha= 0.01, 0.03$) leads to very slow convergence rate. $\alpha =0.1,0.3$ on the other hands, converges swiftly.
+\centering
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=.8\linewidth]{../hw1/part1/3_1_B5_lr0_1.png}
+\subcaption{learning rate $\alpha=0.1$}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{../hw1/part1/3_1_B5_lr0_3}
+\subcaption{learning rate $\alpha=0.3$}
+\label{fig:converg_lr}
+\end{subfigure}
 
-\subsection*{Problem 3.2.A4: Adjusting the regularization parameter}
+\caption{Convergence of gradient descent for linear regression with multiple variables using different learning rate.}
+\end{figure}
+
+$\alpha = 0.1, 0.3$ and $N_{iteration} = 80$ are good trade off between accuracy and efficiency. By observing Fig.~\ref{fig:converg_lr} , one can easily find that small $\alpha$ (i.e. $\alpha= 0.01, 0.03$) leads to very slow convergence rate. $\alpha =0.1,0.3$ on the other hands, converges swiftly.
+
+\subsection*{3.2.A1: Regularized linear regression cost function}
+No figures for this question.
+
+\subsection*{3.2.A2: Gradient of the regularized linear regression cost function}
+There should be a fitting here.
+
+\subsection*{3.2.A3: Learning curves}
+there should be a learning curve here.
+
+\subsection*{3.2.A4: Adjusting the regularization parameter}
 draw two figures of polynomial fit and learning curves.
 
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=.8\linewidth]{../hw1/part2/a4_l_curve_lambda100_0.png}
+\subcaption{learning rate $\alpha=0.01$}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{../hw1/part1/3_1_B5_lr0_03}
+\subcaption{learning rate $\alpha=0.03$}
+\end{subfigure}
+
+\centering
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=.8\linewidth]{../hw1/part2/a4_polynomial_fit_lambda=100_0.png}
+\subcaption{learning rate $\alpha=0.1$}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{../hw1/part1/3_1_B5_lr0_3}
+\subcaption{learning rate $\alpha=0.3$}
+\label{fig:converg_lr}
+\end{subfigure}
+
+\caption{Convergence of gradient descent for linear regression with multiple variables using different learning rate.}
+\end{figure}
+
+
+
+
 If $\lambda$ is too small, the effect of penalty term can be neglected so that the regulation will not be implemented effectively -- the training model is still troubled by high-variation/over-fitting issue (as can be seen in Fig....). When $\lambda$ is too large, the loss function is in fact dominated by the penalty term, which is a slightly similar to the biased issue that we have too strong assumptions on the model. Therefore, the training model turns to be under-fit.  Only when $\lambda$ takes appropriate value that the regulation can works effectively.
+
 
 
 
