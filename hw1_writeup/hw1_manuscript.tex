@@ -464,7 +464,7 @@ No plot for this question.
 Figure~\ref{fig:linear_fit} plots the linear fit using parameter obtained through training.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{../hw1/part1/fig1.png}
+\includegraphics[width=0.5\textwidth]{../hw1/part1/3_1_A_Linear.png}
 \caption{Fitting a linear model to the data}
 \label{fig:linear_fit}
 \end{figure}
@@ -479,7 +479,7 @@ No plot for this question.
 There should be a figure for this question.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{../hw1/part1/fig1.png}
+\includegraphics[width=0.5\textwidth]{../hw1/part1/fig3_1_B_Muiti.png}
 \caption{Fitting a linear model to the data}
 \label{fig:linear_fit}
 \end{figure}
@@ -534,42 +534,97 @@ There should be a fitting here.
 there should be a learning curve here.
 
 \subsection*{3.2.A4: Adjusting the regularization parameter}
-draw two figures of polynomial fit and learning curves.
+Figure~\ref{fig:3_2_A4} plots the polynomial fit and learning curves for each  value of $\lambda$, from which we draw the following conclusions:
+
+If $\lambda$ is too small, the effect of penalty term can be neglected so that the regulation will not be implemented effectively -- the training model is still troubled by high-variation/over-fitting issue (as can be seen in Fig....). When $\lambda$ is too large, the loss function is in fact dominated by the penalty term, which is a slightly similar to the biased issue that we have too strong assumptions on the model. Therefore, the training model turns to be under-fit.  Only when $\lambda$ takes appropriate value that the regulation can works effectively.
 
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}{.5\textwidth}
 \centering
-\includegraphics[width=.8\linewidth]{../hw1/part2/a4_l_curve_lambda100_0.png}
-\subcaption{learning rate $\alpha=0.01$}
+\includegraphics[width=.7\linewidth]{../hw1/part2/fig3_2_A4_Learning_curve_lambda_0.png}
+\subcaption{learning rate $\lambda = 0$}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
 \centering
-\includegraphics[width=0.8\textwidth]{../hw1/part1/3_1_B5_lr0_03}
-\subcaption{learning rate $\alpha=0.03$}
+\includegraphics[width=0.7\textwidth]{../hw1/part2/fig3_2_A4_polynomial_fit_lambda_0.png}
+\subcaption{Polynomial fit $\lambda=0$}
 \end{subfigure}
 
 \centering
 \begin{subfigure}{.5\textwidth}
 \centering
-\includegraphics[width=.8\linewidth]{../hw1/part2/a4_polynomial_fit_lambda=100_0.png}
-\subcaption{learning rate $\alpha=0.1$}
+\includegraphics[width=.7\linewidth]{../hw1/part2/fig3_2_A4_learning_curve_lambda_1.png}
+\subcaption{learning rate $\lambda = 1$}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
 \centering
-\includegraphics[width=0.8\textwidth]{../hw1/part1/3_1_B5_lr0_3}
-\subcaption{learning rate $\alpha=0.3$}
-\label{fig:converg_lr}
+\includegraphics[width=0.7\textwidth]{../hw1/part2/fig3_2_A4_polynomial_fit_lambda_1.png}
+\subcaption{Polynomial fit $\lambda=1$}
+\end{subfigure}
+
+\centering
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=.7\linewidth]{../hw1/part2/fig3_2_A4_learning_curve_lambda_10.png}
+\subcaption{learning rate $\lambda = 10$}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=0.7\textwidth]{../hw1/part2/fig3_2_A4_polynomial_fit_lambda_10.png}
+\subcaption{Polynomial fit $\lambda=10$}
+\end{subfigure}
+
+\centering
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=.7\linewidth]{../hw1/part2/fig3_2_A4_learning_curve_lambda_100.png}
+\subcaption{learning rate $\lambda = 100$}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+\centering
+\includegraphics[width=0.7\textwidth]{../hw1/part2/fig3_2_A4_polynomial_fit_lambda_100.png}
+\subcaption{Polynomial fit $\lambda=100$}
 \end{subfigure}
 
 \caption{Convergence of gradient descent for linear regression with multiple variables using different learning rate.}
+\label{fig:3_2_A4}
+\end{figure}
+
+
+\subsection*{3.2.A5 Selecting $\lambda$ using a validation set}
+Figure~\ref{fig:3_2_A5} shows the variation in trainng/validation error with respect of regulation parameter $\lambda$.  For the current model, $\lambda=1$ is approximately a good choice for the training. We list several reasons to justify our choice:
+\begin{itemize}
+	\item The difference between training/validation error is too large when $\lambda$ is small, implying an over-fitting problem -- this is true because the penalty term characterized by $\lambda$ is too small to regulate the effect of excessive features.
+	\item The difference between training/validation error becomes relatively small, but the absolute training/validation error becomes too large when $\lambda$ gets larger than $1$. This indicates that the penalty term dominates the loss function and we actually are making a strong assumption of the target function (of similar form as that of penalty term), i.e., too much bias / not enough variation. 
+	\item $\lambda=1$ makes a good balance to avoid either overfitting or underfitting, i.e. the validation/training error is small (prediction performance); the difference between validation/training error is small (implying the prediction model is reliable).
+\end{itemize}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{../hw1/part2/fig3_2_A5.png}
+\caption{Variation in training/validation error with $\lambda$}
+\label{fig:3_2_A5}
+\end{figure}
+
+
+\subsection*{3.2.A6 Computing test set error}
+Should make prediction on test set and calculate the test-error / loss.
+
+\subsection*{3.2.A7 Plotting learning curves with randomly selected examples}
+Figure~\ref{fig:3_2_A7} plot the averaged learning curve for $\lambda = 1$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.6\textwidth]{../hw1/part2/fig3_2_A7.png}
+\caption{Averaged learning curve for $\lambda = 1$}
+\label{fig:3_2_A7}
 \end{figure}
 
 
 
 
-If $\lambda$ is too small, the effect of penalty term can be neglected so that the regulation will not be implemented effectively -- the training model is still troubled by high-variation/over-fitting issue (as can be seen in Fig....). When $\lambda$ is too large, the loss function is in fact dominated by the penalty term, which is a slightly similar to the biased issue that we have too strong assumptions on the model. Therefore, the training model turns to be under-fit.  Only when $\lambda$ takes appropriate value that the regulation can works effectively.
+
 
 
 
