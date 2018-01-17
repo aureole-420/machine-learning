@@ -198,6 +198,47 @@ A^{T}A & = & (I-2uu^{T})^{T}(I-2uu^{T}) \notag \\
 \end{eqnarray}
 
 \subsection{convex function}
+\subsubsection{}
+for $x\geq 0$
+\begin{equation}
+f(x)  =  3x^{3}
+\end{equation}
+\begin{equation}
+f^{'}(x)  =  3x^{2} 
+\end{equation}
+\begin{equation}
+f^{''}(x)  =  6x \geq 0
+\end{equation}
+so,$f(x)=x^{3}$ is convex.
+\subsubsection{}
+For any $ \lambda\in[0,1] $,\\
+we have $ \lambda \geq 0,  1 - \lambda \geq 0$ \\
+For any $(x_{1}, y_{1}), (x_{2}, y_{2}) on R^{2}$
+\begin{eqnarray}
+f(\lambda(x_{1}, y_{1}) + (1-\lambda)(x_{2}, y_{2})) & = & max(\lambda(x_{1}, y_{1}) + (1-\lambda)(x_{2}, y_{2})) \notag \\
+& \leq & max(\lambda(x_{1}, y_{1})) + max((1-\lambda)(x_{2}, y_{2})) \notag \\
+& = & \lambda max(x_{1},y_{1}) + (1- \lambda)max(x_{2}, y_{2}) \notag \\
+& = & \lambda f(x_{1}, y_{1}) + (1-\lambda)f(x_{2}, y_{2}) 
+\end{eqnarray}
+So, $f(x)$ is convex.
+\subsubsection{}
+Because $f$ is convex on $S$, for $\lambda \in [0,1]$ and all $x_{1}, x_{2} \in S$, we have \\
+\begin{equation}
+f(\lambda x_{1} + (1-\lambda) x_{2}) \leq \lambda f(x_{1}) + (1 - \lambda)f(x_{2}) 
+\end{equation}
+Also, \\ 
+\begin{equation}
+g(\lambda x_{1} + (1-\lambda) x_{2}) \leq \lambda g(x_{1}) + (1 - \lambda)g(x_{2})
+\end{equation}
+Let $h = f + g$,
+\begin{eqnarray}
+h(\lambda x_{1} + (1-\lambda) x_{2}) & = & f(\lambda x_{1} + (1-\lambda) x_{2}) +  g(\lambda x_{1} + (1-\lambda) x_{2}) \notag \\
+& \leq & \lambda f(x_{1}) + (1 - \lambda)f(x_{2}) + \lambda g(x_{1}) + (1 - \lambda)g(x_{2}) \notag \\
+& = & \lambda (f(x_{1}) + g(x_{1})) + (1 - \lambda)(f(x_{2}) + g(x_{2}))\notag \\
+& = & \lambda h(x_{1}) + (1-\lambda)h(x_{2})
+\end{eqnarray}
+So, $h$ is convex, i.e. $f+g$ is convex.
+\subsubsection{}
 
 \subsection{entropy of categorical distribution}
 
