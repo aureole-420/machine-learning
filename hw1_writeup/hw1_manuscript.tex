@@ -504,7 +504,7 @@ Q.E.D.
 No plot for this question.
 
 \subsection*{3.1.A2}
-Figure~\ref{fig:linear_fit} plots the linear fit using parameter obtained through training.
+Figure~\ref{fig:linear_fit} plots the linear fit using parameter obtained through training, while Fig.~\ref{fig:linear_convergence} shows the convergence of the loss function against iteration times.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{../hw1/part1/3_1_A_Linear.png}
@@ -512,8 +512,19 @@ Figure~\ref{fig:linear_fit} plots the linear fit using parameter obtained throug
 \label{fig:linear_fit}
 \end{figure}
 
+
+Figure~\ref{fig:linear_fit} plots the linear fit using parameter obtained through training.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../hw1/part1/3_1_A_Convergence.png}
+\caption{Convergence of Loss function against the number of iterations.}
+\label{fig:linear_convergence}
+\end{figure}
+
 \subsection*{Problem 3.1.A3: Predicting on unseen data}
-For average home in Boston suburbs, we predict a median home value of 225328.063241 (USD)
+For lower status percentage = 5, we predict a median home value of 298034.494122
+
+For lower status percentage = 50, we predict a median home value of -129482.128898
 
 \subsection*{3.1.B1: Feature Normalization}
 No plot for this question.
@@ -651,9 +662,9 @@ If $\lambda$ is too small, the effect of penalty term can be neglected so that t
 \subsection*{3.2.A5 Selecting $\lambda$ using a validation set}
 Figure~\ref{fig:3_2_A5} shows the variation in trainng/validation error with respect of regulation parameter $\lambda$.  For the current model, $\lambda=1$ is approximately a good choice for the training. We list several reasons to justify our choice:
 \begin{itemize}
-	\item The difference between training/validation error is too large when $\lambda$ is small, implying an over-fitting problem -- this is true because the penalty term characterized by $\lambda$ is too small to regulate the effect of excessive features.
+	\item The difference between training/validation error is too large when $\lambda$ is significantly smaller than 1, implying an over-fitting issue -- which is true because the penalty term characterized by $\lambda$ is too small to regulate the effect of excessive features.
 	\item The difference between training/validation error becomes relatively small, but the absolute training/validation error becomes too large when $\lambda$ gets larger than $1$. This indicates that the penalty term dominates the loss function and we actually are making a strong assumption of the target function (of similar form as that of penalty term), i.e., too much bias / not enough variation. 
-	\item $\lambda=1$ makes a good balance to avoid either overfitting or underfitting, i.e. the validation/training error is small (prediction performance); the difference between validation/training error is small (implying the prediction model is reliable).
+	\item $\lambda=1$ makes a good balance to avoid either overfitting or underfitting, i.e. the validation/training error is small ( the prediction performance is acceptable); the difference between validation/training error is small (the prediction model is reliable).
 \end{itemize}
 \begin{figure}[h]
 \centering
