@@ -98,13 +98,15 @@ class MixtureModel(ProbabilityModel):
         self.ap = ap
         self.pm = pm
     
+class MixtureModel(ProbabilityModel):
+    
+    # Initializes a mixture-model object parameterized by the
+    # atomic probabilities vector ap (numpy.array of size k) and by the tuple of 
+    # probability models pm
+    def __init__(self,ap,pm):
+        self.ap = ap
+        self.pm = pm
+    
     def sample(self):
-        for i in range(len(self.ap)):
-            weight = self.ap[i]
-            # print weight*self.pm[0].sample()
-            if (i == 0): 
-                sample = weight*self.pm[0].sample()
-            else: 
-                sample += weight*self.pm[i].sample()
-              
-        return sample
+        ct = Categorical(self.ap)
+        return self.pm[ct.sample()].sample()
