@@ -365,6 +365,8 @@ Therefore we have the following algorithm:
  \caption{Batch gradient descent algorithm for locally weighted linear regression}
 \end{algorithm}
 
+The batch gradient descent algorithm for locally weighted linear regression is NON parametric model.
+
 
 
 
@@ -527,6 +529,13 @@ Figure~\ref{fig:3_1_B2} shows the loss function against the number of iterations
 \caption{Fitting a linear model to the data}
 \label{fig:3_1_B2}
 \end{figure}
+
+What can you say about the quality of the linear fit for this data? In your assignment writeup.pdf, explain how you expect the model to perform at the low and high ends of values for LSTAT? How could we improve the quality of the fit?
+\begin{itemize}
+\item The linear model gives a rather rough estimation of the data. The issue with fitting clear is excessive bias / underfitting, i.e. too strong assumption on that Boston house price observes a sole linear relation with LSTAT.
+\item  I expect the linear model performs awfully at the low and high ends of values for LSTAT. Using linear model with only one feature, one obviously assumes that the data should distreated rather evenly on both sides of the model, which in fact contradicts with the real data.
+\item The problem with current model is lack of variation, which can be treated with introducing more features (e,g. through feature engineering).
+\end{itemize}
 
 \subsection*{3.1.B3 Making predictions on unseen data\label{subsec:3_1_B3}}
 For average home in Boston suburbs, we predict a median home value of 225328.063241
