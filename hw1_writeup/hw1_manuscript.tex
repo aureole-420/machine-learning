@@ -26,7 +26,7 @@
 
 \part*{0. Background Refresher}
 
-\subsection*{0.0 Samplers} 
+\subsection{Samplers} 
 
 \begin{figure}[h]
 \centering
@@ -90,59 +90,35 @@ P(X=k) & = & \sum_{m+n=k}P(X_{1}=m,X_{2}=n) \notag \\
 
 that is, $X=X_{1}+X_{2}\sim P(\lambda_{_{1}}+\lambda_{2})$. Q.E.D.
 
-\subsection{Proof question 2}
+\subsection{Proof question 3}
 
 \begin{eqnarray}
 p(x_{1,}x_{0}) & = & p(x_{1}|x_{0})p(x_{0}) \notag \\
  & = & \alpha e^{-\frac{(x_{1}-x_{0})^{2}}{2\sigma^{2}}}\alpha_{0}e^{-\frac{(x_{0}-\mu_{0})^{2}}{2\sigma_{0}^{2}}}
 \end{eqnarray}
 
-The probability distribution of $X_{1}$ is,
+The probability of $X_{1} = x_{1}$ is,
+\begin{align*}
+p\left ( X_{1}=x_{1} \right )&=\int p\left ( X_{1}=x_{1},X_{0}=x_{0} \right )dx_{0}
+\\ &=\alpha _{0}\alpha \int exp\left ( -\frac{1}{2}\left ( \frac{\left ( x_{0}-\mu _{0} \right )^{2}}{\sigma ^{2}_{0}}+ \frac{\left ( x_{1}-x_{0} \right )^{2}}{\sigma^{2} }\right ) \right )dx_{0}
+\\ &=\frac{\alpha _{0}\alpha }{A}exp\left ( -\frac{1}{2}\frac{\left ( x_{1}-\mu _{0} \right )^{2}}{\sigma^{2}+\sigma _{0}^{2}} \right )
+\end{align*}
+Here $A$ is a constant. So 
+\begin{align*}
+p\left ( X_{1}=x_{1} \right )=\alpha _{1}exp\left ( -\frac{1}{2}\frac{\left ( x_{1}-\mu _{1} \right )^{2}}{\sigma _{1}^{2}} \right )
+\end{align*}
+And
+\begin{equation*}
+\mu _{1}=\mu _{0}
+\end{equation*}
+\begin{equation*}
+\sigma _{1}^{2}=\sigma^{2}+\sigma _{0}^{2}
+\end{equation*}
+\begin{equation*}
+\alpha _{1}=\frac{\alpha _{0}\alpha }{A}=\alpha _{0}\alpha\int exp\left (-\frac{1}{2} \frac{x_{0}^{2}-2\left ( \frac{\sigma ^{2}\mu _{0}+\sigma _{0}^{2}x_{1}}{\sigma ^{2}+\sigma _{0}^{2}} \right )x_{0}+\left ( \frac{\sigma ^{2}\mu _{0}+\sigma _{0}^{2}x_{1}}{\sigma ^{2}+\sigma _{0}^{2}} \right )^{2}}{\sigma _{0}^{2}\sigma^{2} /\left ( \sigma ^{2}+\sigma _{0}^{2} \right )} \right )dx_{0}
+\end{equation*}
 
-\begin{eqnarray}
-p(x_{1}) & = & \int_{-\infty}^{\infty}p(x_{1},x_{0})dx_{0} \notag \\
- & = & \int_{-\infty}^{\infty}\alpha e^{-\frac{(x_{1}-x_{0})^{2}}{2\sigma^{2}}}\alpha_{0}e^{-\frac{(x_{0}-\mu_{0})^{2}}{2\sigma_{0}^{2}}}dx_{0} \notag \\
- & = & D\int_{-\infty}^{\infty}e^{-A[x_{0}-B]^{2}+C}dx_{0}
- \label{eqn:px1}
-\end{eqnarray}
-where $A,B,C,D$
-
-\begin{eqnarray}
-D & = & \alpha\alpha_{0}e^{-\frac{\mu_{0}^{2}}{2\sigma_{0}^{2}}}e^{-\frac{x_{1}^{2}}{2\sigma^{2}}}
-\end{eqnarray}
-
-\begin{equation}
-A=\frac{\sigma_{0}^{2}+\sigma^{2}}{2\sigma_{0}^{2}\sigma^{2}},    
-\end{equation}
-
-
-\begin{equation}
-B=\frac{x_{1}\sigma_{0}^{2}+\mu_{0}\sigma^{2}}{\sigma_{0}^{2}+\sigma^{2}},
-\end{equation}
-
-
-\begin{equation}
-C=\frac{(x_{1}\sigma_{0}^{2}+\mu_{0}\sigma^{2})^{2}}{2\sigma_{0}^{2}\sigma^{2}(\sigma_{0}^{2}+\sigma^{2})}.    
-\end{equation}
-
-
-Making the substitution $t=\sqrt{2A}(x_{0}-B)$ gives
-
-\begin{eqnarray}
-\int_{-\infty}^{\infty}e^{-A[x_{0}-B]^{2}+C}dx_{0} & = & \int_{-\infty}^{\infty}e^{-\frac{t^{2}}{2}+C}d\frac{t}{\sqrt{2A}} \notag \\
- & = & \frac{1}{\sqrt{2A}}e^{-C}\int_{-\infty}^{\infty}e^{-\frac{t^{2}}{2}}dt \notag \\
- & = & \sqrt{\frac{\pi}{A}}e^{-C}
-\end{eqnarray}
-where in the second step we used $\int_{-\infty}^{\infty}e^{-\frac{t^{2}}{2}}dt=\sqrt{2\pi}$. 
-
-Substituting the above equation to the Eq.~(\ref{eqn:px1}) yields
-
-\begin{eqnarray}
-p(x_{1}) & = & D\sqrt{\frac{\pi}{A}}e^{-C} \notag \\
- & = & \alpha\alpha_{0}e^{-\frac{\mu_{0}^{2}}{2\sigma_{0}^{2}}}e^{-\frac{x_{1}^{2}}{2\sigma^{2}}}\sqrt{\frac{\pi}{A}}e^{-C}
-\end{eqnarray}
-
-\subsection{question 4 eigenvalues}
+\subsection{Eigenvalues}
 
 \[
 \boldsymbol{A}=\left[\begin{array}{cc}
@@ -170,7 +146,7 @@ $\lambda_{2}=14$, $\boldsymbol{X}_{2}=\left(\begin{array}{c}
 1
 \end{array}\right)$
 
-\subsection{question 5, matrix multiplication}
+\subsection{Matrix multiplication}
 
 $A=\left[\begin{array}{cc}
 1 & 2\\
@@ -188,7 +164,7 @@ $A=\left[\begin{array}{cc}
 0 & 0
 \end{array}\right]$ , $A,B\neq0$ and we have $AB=0$
 
-\subsection{question 6}
+\subsection{Question 6}
 
 \begin{eqnarray}
 A^{T}A & = & (I-2uu^{T})^{T}(I-2uu^{T}) \notag \\
@@ -197,8 +173,8 @@ A^{T}A & = & (I-2uu^{T})^{T}(I-2uu^{T}) \notag \\
  & = & I
 \end{eqnarray}
 
-\subsection{convex function}
-\subsubsection{}
+\subsection{Convex function}
+\subsubsection{Triple}
 for $x\geq 0$
 \begin{equation}
 f(x)  =  3x^{3}
@@ -210,7 +186,7 @@ f^{'}(x)  =  3x^{2}
 f^{''}(x)  =  6x \geq 0
 \end{equation}
 so,$f(x)=x^{3}$ is convex.
-\subsubsection{}
+\subsubsection{Two dimension}
 For any $ \lambda\in[0,1] $,\\
 we have $ \lambda \geq 0,  1 - \lambda \geq 0$ \\
 For any $(x_{1}, y_{1}), (x_{2}, y_{2}) on R^{2}$
@@ -221,7 +197,7 @@ f(\lambda(x_{1}, y_{1}) + (1-\lambda)(x_{2}, y_{2})) & = & max(\lambda(x_{1}, y_
 & = & \lambda f(x_{1}, y_{1}) + (1-\lambda)f(x_{2}, y_{2}) 
 \end{eqnarray}
 So, $f(x)$ is convex.
-\subsubsection{}
+\subsubsection{Plus}
 Because $f$ is convex on $S$, for $\lambda \in [0,1]$ and all $x_{1}, x_{2} \in S$, we have \\
 \begin{equation}
 f(\lambda x_{1} + (1-\lambda) x_{2}) \leq \lambda f(x_{1}) + (1 - \lambda)f(x_{2}) 
@@ -238,9 +214,21 @@ h(\lambda x_{1} + (1-\lambda) x_{2}) & = & f(\lambda x_{1} + (1-\lambda) x_{2}) 
 & = & \lambda h(x_{1}) + (1-\lambda)h(x_{2})
 \end{eqnarray}
 So, $h$ is convex, i.e. $f+g$ is convex.
-\subsubsection{}
-
-\subsection{entropy of categorical distribution}
+\subsubsection{Multiply}
+Let $h = fg$
+\begin{eqnarray}
+h^{''} & = & (f^{'}g + fg^{'})^{'}  \notag \\
+& = & f^{''} + 2f^{'}g^{'} + fg^{''} 
+\end{eqnarray}
+Obviously, $f \geq 0$, $f^{''} \geq 0$, $g \geq 0$, $g^{''} \geq 0$ on $S$.\\
+Let the minimum of both $f$ and $g$ be $x_{0}$, then when $x \leq x_{0}$,
+$f(x_{0}) \leq 0$ and $g(x_{0}) \leq 0$; 
+when $x \geq x_{0}$, $f(x_{0}) \geq 0$ and $g(x_{0}) \geq 0$, i.e. $f^{'}g^{'} \geq 0$. So 
+\begin{eqnarray}
+h^{''} \geq 0
+\end{eqnarray} 
+$h$ is convex, i.e. $f + g$ is convex.
+\subsection{Entropy of categorical distribution}
 
 The entropy of a categorical distribution on $K$ values is 
 
