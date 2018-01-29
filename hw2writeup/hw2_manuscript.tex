@@ -1,0 +1,119 @@
+\documentclass[english,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption} % to plot subfigure
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{babel}
+
+
+\begin{document}
+
+
+
+\title{COMP 540 HW 02 }
+
+\author{Lyu Pan (lp28), Yuhui Tong (yt30)}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% section 1 %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Gradient and Hessian of $NLL(\theta)$ for logistic regression.}
+
+\subsection{} % proof 1.1 
+\label{sec:1_1}
+\begin{proof}
+We explicitly express $\frac{\partial g(z)}{\partial z}$ and $g(z)\left(1-g(z)\right)$ in terms of function of $z$ respectively, i.e.,
+\begin{equation}
+\frac{\partial g(z)}{\partial z}=(1+e^{-z})^{-2}(-1)(-1)e^{-z}=\frac{e^{-z}}{(1+e^{-z})^{2}},
+\end{equation}
+and
+\begin{equation}
+g(z)\left(1-g(z)\right)=\frac{1}{1+e^{-z}}\left(1-\frac{1}{1+e^{-z}}\right)=\frac{e^{-z}}{(1+e^{-z})^{2}}.
+\end{equation}
+Comparing above two equations gives
+\begin{equation}
+\frac{\partial g(z)}{\partial z}=g(z)\left(1-g(z)\right)
+\end{equation}
+\end{proof}
+
+
+\subsection{}  % proof 1.2
+\begin{proof}
+The negative log likelihood function of logistic regression model is described by
+\begin{equation}
+NLL(\theta)=-\sum_{i=1}^{m}\left[y^{(i)}\log\left(h_{\theta}(x^{(i)})\right)+(1-y^{(i)})\log\left(1-h_{\theta}(x^{(i)})\right)\right].
+\label{eqn:NLL_function}
+\end{equation}
+Taking the derivative of  Eq.~(\ref{eqn:NLL_function}) on $\theta_j$ gives:
+
+\begin{eqnarray}
+\frac{\partial NLL(\theta)}{\partial\theta_{j}}	& = &	-\sum_{i=1}^{m}\left[y^{(i)}\frac{1}{h_{\theta}(x^{(i)})}-(1-y^{(i)})\frac{1}{1-h_{\theta}(x^{(i)})}\log\right]\frac{\partial h_{\theta}(x^{(i)})}{\partial\theta_{j}} \\
+& =&	-\sum_{i=1}^{m}\left[y^{(i)}\frac{1}{h_{\theta}(x^{(i)})}-(1-y^{(i)})\frac{1}{1-h_{\theta}(x^{(i)})}\log\right]h_{\theta}(x^{(i)})\left(1-h_{\theta}(x^{(i)})\right)x_{j}^{(i)} \\
+& = &	-\sum_{i=1}^{m}\left[y^{(i)}-h_{\theta}(x^{(i)})\right]x_{j}^{(i)} \\
+& = &	\sum_{i=1}^{m}\left[h_{\theta}(x^{(i)})-y^{(i)}\right]x_{j}^{(i)}, \label{eqn:1_2_1}
+\end{eqnarray}
+
+where in the second step we make use of the the chain rule of derivative and  the result of Sec.~\ref{sec:1_1}, i.e.
+
+\begin{equation}
+\frac{\partial h_{\theta}(x^{(i)})}{\partial\theta_{j}}=\frac{\partial g(z)}{\partial z}\cdot\frac{\partial z}{\partial\theta_{j}}=g(z)\left(1-g(z)\right)x_{j}^{(i)}=h_{\theta}(x^{(i)})\left(1-h_{\theta}(x^{(i)})\right)x_{j}^{(i)}, \ z=\theta^{T}x.
+\end{equation} 
+
+Finally, vectorizing Eq.~(\ref{eqn:1_2_1}) leads to the conclusion that
+
+\begin{equation}
+\frac{\partial NLL(\theta)}{\partial\theta}=\sum_{i=1}^{m}\left[h_{\theta}(x^{(i)})-y^{(i)}\right]x^{(i)}.
+\end{equation}
+\end{proof}
+
+\subsection{} % section 1.3
+\begin{proof}
+Take  $\forall$ nonzero column vector $u$, we have scalar $\alpha(u)$:
+\begin{equation}
+\alpha(u)=u^{T}Hu=u^{T}X^{T}SXu=v^{T}Sv
+\end{equation}
+where $v=Xu$.  Doing some linear algebra (by making use of the diagonality of $S$ matrix ) gives us the expression of the scalar
+\begin{eqnarray}
+\alpha(u)	& =&	v^{T}Sv=\sum_{i}\sum_{j}v_{i}S_{i,j}v_{j} \\
+	& = &	\sum_{i}\sum_{j}v_{i}\delta_{i,j}S_{i,i}v_{j} \\ 
+	& = &	\sum_{i}v_{i}S_{i,i}v_{i} \\
+	& = &	\sum_{i}\left(v_{i}\right)^{2}h_{\theta}(x^{(i)})\left[1-h_{\theta}(x^{(i)})\right]. \label{eqn:1_3_1}
+\end{eqnarray}
+
+Considering the fact that $X$ is full rank, it is implied that $v=Xu\neq0, \forall \mathrm{nonzero}\ u$, which futher indicating that every term in the summation of Eq.~(\ref{eqn:1_3_1}) is positive (assuming $h_\theta(x)\in(0,1)$), i.e., 
+\begin{equation}
+\left(v_{i}\right)^{2}h_{\theta}(x^{(i)})\left[1-h_{\theta}(x^{(i)})\right]>0, \forall \ i.
+\end{equation}  
+Therefore we have
+\begin{equation}
+u^{T}Hu>0,\ \forall\ \mathrm{nonzero}\ u
+\end{equation}
+i.e., matrix $H$ is positive definite.
+\end{proof}
+
+\section{Properties of L2 regularized logistic regression.}
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
